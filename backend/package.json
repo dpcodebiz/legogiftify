@@ -1,0 +1,30 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsx --watch src/index.ts",
+    "reset-db": "prisma db push --force-reset",
+    "seed": "npm run reset-db && prisma db seed"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
+  "author": "Philippe D.",
+  "license": "ISC",
+  "description": "Giftify Lego Technical Assessment Backend",
+  "dependencies": {
+    "@prisma/client": "^5.15.1",
+    "csv-parse": "^5.5.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "prisma": "^5.15.1",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.21",
+    "tsx": "^4.15.7"
+  }
+}
