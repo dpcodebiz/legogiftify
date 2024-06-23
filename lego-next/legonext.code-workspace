@@ -11,7 +11,8 @@
       "firsttris.vscode-jest-runner",
       "mike-co.import-sorter",
       "dbaeumer.vscode-eslint",
-      "DavidAnson.vscode-markdownlint"
+      "DavidAnson.vscode-markdownlint",
+      "Prisma.prisma"
     ]
   },
   "settings": {
