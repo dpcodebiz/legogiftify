@@ -7,11 +7,87 @@ datasource db {
   url      = env("PRISMA_DB_URL")
 }
 
+model inventories {
+  id      Int    @unique
+  version Int
+  set_num String @db.VarChar(20)
+}
+
+model inventory_minifigs {
+  id           Int    @id @default(autoincrement())
+  inventory_id Int
+  fig_num      String @db.VarChar(20)
+  quantity     Int
+}
+
+model inventory_parts {
+  id           Int     @id @default(autoincrement())
+  inventory_id Int
+  part_num     String  @db.VarChar(20)
+  color_id     Int
+  quantity     Int
+  is_spare     Boolean
+  img_url      String
+}
+
+model inventory_sets {
+  id           Int    @id @default(autoincrement())
+  inventory_id Int
+  set_num      String @db.VarChar(20)
+  quantity     Int
+}
+
+model themes {
+  id        Int    @unique
+  name      String @db.VarChar(200)
+  parent_id Int
+}
+
+model minifigs {
+  fig_num   String @unique @db.VarChar(20)
+  name      String @db.VarChar(256)
+  num_parts Int
+  img_url   String
+}
+
 model sets {
-  set_num   String @unique
-  name      String
+  set_num   String @unique @db.VarChar(20)
+  name      String @db.VarChar(256)
   year      Int
   theme_id  Int
   num_parts Int
   img_url   String
+}
+
+model parts {
+  part_num      String @unique @db.VarChar(20)
+  name          String @db.VarChar(250)
+  part_cat_id   Int
+  part_material String
+}
+
+model part_categories {
+  id   Int    @unique
+  name String @db.VarChar(200)
+}
+
+model part_relationships {
+  id              Int    @id @default(autoincrement())
+  rel_type        String @db.VarChar(1)
+  child_part_num  String @db.VarChar(20)
+  parent_part_num String @db.VarChar(20)
+}
+
+model colors {
+  id       Int     @unique
+  name     String  @db.VarChar(200)
+  rgb      String  @db.VarChar(6)
+  is_trans Boolean
+}
+
+model elements {
+  element_id String @unique @db.VarChar(10)
+  part_num   String @db.VarChar(20)
+  color_id   Int
+  design_id  String
 }
