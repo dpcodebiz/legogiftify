@@ -24,7 +24,7 @@ app.get("/", (_, res: Response) => {
 // TODO types
 // Sets
 app.get("/sets", GetSets);
-app.post("/sets/add", json, AddPartToSet);
+app.post("/sets/add", json(), AddPartToSet);
 app.get("/sets/:set_num", GetSet);
 
 // Parts

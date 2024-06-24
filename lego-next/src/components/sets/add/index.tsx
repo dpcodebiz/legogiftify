@@ -1,5 +1,6 @@
 import { backend } from "@/utils/config";
 import axios from "axios";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import AsyncSelect from "react-select/async";
 
 type Props = {
@@ -11,16 +12,54 @@ type PartOption = {
   value: string;
 };
 
+type SetAddPartFormData = {
+  part_num: string;
+  quantity: number;
+};
+
 export const SetAdd = ({ set_num }: Props) => {
-  const promiseOptions = (inputValue: string) =>
-    new Promise<PartOption[]>(async (resolve) => {
+  const promiseOptions = (inputValue: string) => {
+    if (!inputValue || inputValue.length < 3)
+      return new Promise<PartOption[]>((resolve) => resolve([]));
+    return new Promise<PartOption[]>(async (resolve) => {
       const req = await axios.get(backend(`/parts/search?q=${inputValue}`));
       resolve(req.data);
     });
+  };
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<SetAddPartFormData>();
+
+  // TODO input sanitation
+  const onSubmit: SubmitHandler<SetAddPartFormData> = async (data) => {
+    const req = await axios.post(backend("/sets/add"), {
+      set_num: set_num,
+      ...data,
+    });
+  };
 
   return (
     <>
-      <AsyncSelect cacheOptions defaultOptions loadOptions={promiseOptions} />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Controller
+          name="part_num"
+          control={control}
+          render={({ field: { onChange } }) => (
+            <AsyncSelect
+              onChange={(e) => onChange(e?.value)}
+              cacheOptions
+              defaultOptions
+              loadOptions={promiseOptions}
+            />
+          )}
+        />
+        <input {...register("quantity")} type="text" className="bg-green-300" />
+        <input type="submit" value="submit" />
+      </form>
     </>
   );
 };
