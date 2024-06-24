@@ -1,11 +1,11 @@
-import express, { Response, json } from "express";
-import dotenv from "dotenv";
-import { GetSets } from "sets/list";
 import cors from "cors";
-import { GetSet } from "sets/get";
+import dotenv from "dotenv";
+import express, { Response, json } from "express";
 import { GetParts } from "parts/get";
 import { SearchParts } from "parts/search";
 import { AddPartToSet } from "sets/add";
+import { GetSet } from "sets/get";
+import { SearchSets } from "sets/search";
 
 dotenv.config();
 const app = express();
@@ -23,7 +23,7 @@ app.get("/", (_, res: Response) => {
 
 // TODO types
 // Sets
-app.get("/sets", GetSets);
+app.get("/sets", SearchSets);
 app.post("/sets/add", json(), AddPartToSet);
 app.get("/sets/:set_num", GetSet);
 

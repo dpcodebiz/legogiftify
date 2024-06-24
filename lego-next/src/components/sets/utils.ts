@@ -3,10 +3,10 @@ import { Set } from "@models/set";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-export const useSets = () =>
+export const useSets = (searchQ: string) =>
   useQuery<Set[]>({
-    queryKey: ["getSets"],
-    queryFn: async () => (await axios.get(backend("/sets"))).data,
+    queryKey: ["searchSets", searchQ],
+    queryFn: async () => (await axios.get(backend(`/sets?q=${searchQ}`))).data,
   });
 
 export const useSet = (set_num: string) =>
