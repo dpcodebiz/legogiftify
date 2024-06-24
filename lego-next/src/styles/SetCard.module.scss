@@ -1,9 +1,21 @@
 .container {
+  @apply flex flex-col gap-4;
+}
+
+.cards_container {
   @apply grid grid-cols-1 gap-4;
+
+  :nth-child(n + 9) {
+    @apply hidden;
+  }
 }
 
 .action_container {
-  @apply flex flex-col place-self-end;
+  @apply flex flex-col space-y-2;
+}
+
+.search {
+  @apply p-4 rounded w-full shadow-sm;
 }
 
 .card {

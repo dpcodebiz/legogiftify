@@ -22,21 +22,24 @@ export const SetsContainer = () => {
         <div className={styles.action_container}>
           <form>
             <input
+              className={styles.search}
               type="text"
+              placeholder="Search for a specific set here"
               onChange={(e) => onSearchUpdate(e.target.value)}
             />
           </form>
-          <span>Showing most relevant results</span>
         </div>
-        {isLoading ? (
-          <>Loading</>
-        ) : (
-          <>
-            {data?.map((set, index) => (
-              <SetCard key={index} set={set}></SetCard>
-            ))}
-          </>
-        )}
+        <div className={styles.cards_container}>
+          {isLoading ? (
+            <>Loading</>
+          ) : (
+            <>
+              {data?.map((set, index) => (
+                <SetCard key={index} set={set}></SetCard>
+              ))}
+            </>
+          )}
+        </div>
       </div>
     </>
   );
