@@ -1,21 +1,31 @@
-import express, { Request, Response } from "express";
+import express, { Response } from "express";
 import dotenv from "dotenv";
+import { GetSets } from "sets/list";
+import cors from "cors";
 
-// configures dotenv to work in your application
 dotenv.config();
 const app = express();
 
+// Setting cors
+app.use(cors());
+
+// Getting port
 const PORT = process.env.PORT;
 
-app.get("/", (request: Request, response: Response) => {
-  response.status(200).send("Hello World");
+// Root
+app.get("/", (_, res: Response) => {
+  res.status(200).send("Backend is on");
 });
 
+// Sets
+// TODO types
+app.get("/sets", GetSets as any);
+
+// App
 app
   .listen(PORT, () => {
-    console.log("Server running at PORT: ", PORT);
+    console.log("Backend running on port ", PORT);
   })
   .on("error", (error) => {
-    // gracefully handle error
     throw new Error(error.message);
   });
