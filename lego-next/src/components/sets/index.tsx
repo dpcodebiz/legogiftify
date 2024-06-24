@@ -9,7 +9,7 @@ import styles from "@styles/SetCard.module.scss";
 export const SetsContainer = () => {
   // Fetching sets
   const [searchQ, setSearchQ] = useState<string>("");
-  const { isLoading, data, refetch } = useSets(searchQ);
+  const { isLoading, data } = useSets(searchQ);
 
   const onSearchUpdate = (newSearchQ: string) => {
     setSearchQ(newSearchQ);
@@ -26,20 +26,17 @@ export const SetsContainer = () => {
               onChange={(e) => onSearchUpdate(e.target.value)}
             />
           </form>
-          <div>TODO search bar</div>
           <span>Showing most relevant results</span>
         </div>
-        <div>
-          {isLoading ? (
-            <>Loading</>
-          ) : (
-            <>
-              {data?.map((set, index) => (
-                <SetCard key={index} set={set}></SetCard>
-              ))}
-            </>
-          )}
-        </div>
+        {isLoading ? (
+          <>Loading</>
+        ) : (
+          <>
+            {data?.map((set, index) => (
+              <SetCard key={index} set={set}></SetCard>
+            ))}
+          </>
+        )}
       </div>
     </>
   );
