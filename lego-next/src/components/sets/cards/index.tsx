@@ -17,7 +17,11 @@ export const SetCard = ({ set }: Props) => {
       </div>
       <div className={styles.description}>
         <div className={styles.head}>
-          <span className={styles.name}>{set.name}</span>
+          <span className={styles.name}>
+            {set.name.length > 25
+              ? set.name.substring(0, 25) + "..."
+              : set.name}
+          </span>
           <span className={styles.id}>{set.set_num}</span>
         </div>
         <div className={styles.info}>
