@@ -10,7 +10,9 @@ import Link from "next/link";
 export default function SetPage({ params }: { params: { set_num: string } }) {
   return (
     <>
-      <Link href="/">Home</Link>
+      <div className="w-max mx-auto">
+        <Link href="/">Go back</Link>
+      </div>
       <div className="max-w-screen-xl w-full mx-auto">
         <div className={clsx(styles.section, styles.split_media_screen)}>
           <SetFullCard set_num={params.set_num} />

@@ -15,7 +15,7 @@ export const SearchSets = async (req: Request, res: Response) => {
         contains: q as string,
       },
     },
-    take: 24, // TODO remove when optimizing
+    take: 100, // TODO remove when optimizing
   });
 
   // Sending

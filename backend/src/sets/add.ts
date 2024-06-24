@@ -5,7 +5,7 @@ export const AddPartToSet = async (req: Request, res: Response) => {
   // Getting set by set_num
   const client = new PrismaClient();
 
-  // TODO sanitation
+  // TODO sanitation yupResolver
   // TODO tests
 
   // Params
@@ -18,7 +18,10 @@ export const AddPartToSet = async (req: Request, res: Response) => {
     },
   });
 
-  if (!inventory) return;
+  if (!inventory) {
+    res.status(400).send({ error: "Unable to process client input." });
+    return;
+  }
 
   // Retrieving part
   const part = await client.parts_search.findFirst({
@@ -27,7 +30,10 @@ export const AddPartToSet = async (req: Request, res: Response) => {
     },
   });
 
-  if (!part) return;
+  if (!part) {
+    res.status(400).send({ error: "Unable to process client input." });
+    return;
+  }
 
   // Adding inventory part
   const inventory_part = await client.inventory_parts.create({

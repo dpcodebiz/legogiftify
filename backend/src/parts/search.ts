@@ -15,7 +15,6 @@ export const SearchParts = async (req: Request, res: Response) => {
         contains: q as string,
       },
     },
-    take: 100, // TODO remove when optimizing
   });
 
   // Sending
