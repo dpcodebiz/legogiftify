@@ -15,6 +15,10 @@
   :nth-child(n + 15) {
     @apply max-lg:hidden;
   }
+
+  :nth-child(n + 22) {
+    @apply max-xl:hidden;
+  }
 }
 
 .action_container {
