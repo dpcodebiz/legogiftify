@@ -31,6 +31,7 @@
 
   .img {
     @apply bg-white rounded-l max-w-[150px] min-w-[150px] p-4 h-full;
+    @apply hover:opacity-50 transition-opacity cursor-pointer;
 
     a {
       @apply h-full block place-content-center;
@@ -45,6 +46,7 @@
 
     .head {
       @apply flex flex-col space-y-2 mb-2;
+      @apply hover:text-blue-700 transition-colors;
     }
 
     .name {
