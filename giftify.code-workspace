@@ -12,7 +12,8 @@
       "mike-co.import-sorter",
       "dbaeumer.vscode-eslint",
       "DavidAnson.vscode-markdownlint",
-      "Prisma.prisma"
+      "Prisma.prisma",
+      "bradlc.vscode-tailwindcss"
     ]
   },
   "settings": {
