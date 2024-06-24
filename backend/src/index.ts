@@ -1,7 +1,11 @@
-import express, { Response } from "express";
+import express, { Response, json } from "express";
 import dotenv from "dotenv";
 import { GetSets } from "sets/list";
 import cors from "cors";
+import { GetSet } from "sets/get";
+import { GetParts } from "parts/get";
+import { SearchParts } from "parts/search";
+import { AddPartToSet } from "sets/add";
 
 dotenv.config();
 const app = express();
@@ -17,9 +21,15 @@ app.get("/", (_, res: Response) => {
   res.status(200).send("Backend is on");
 });
 
-// Sets
 // TODO types
-app.get("/sets", GetSets as any);
+// Sets
+app.get("/sets", GetSets);
+app.post("/sets/add", json, AddPartToSet);
+app.get("/sets/:set_num", GetSet);
+
+// Parts
+app.get("/parts/search", SearchParts);
+app.get("/parts/:set_num", GetParts);
 
 // App
 app

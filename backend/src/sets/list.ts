@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { Response } from "express";
+import { Request, Response } from "express";
 
 export const GetSets = async (_: Request, res: Response) => {
   // Getting sets

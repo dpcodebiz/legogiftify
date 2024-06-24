@@ -118,3 +118,6 @@ CREATE TABLE `elements` (
 
     UNIQUE INDEX `elements_element_id_key`(`element_id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- AddForeignKey
+ALTER TABLE `inventory_parts` ADD CONSTRAINT `inventory_parts_inventory_id_fkey` FOREIGN KEY (`inventory_id`) REFERENCES `inventories`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

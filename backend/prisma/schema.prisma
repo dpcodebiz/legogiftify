@@ -8,9 +8,10 @@ datasource db {
 }
 
 model inventories {
-  id      Int    @unique
-  version Int
-  set_num String @db.VarChar(20)
+  id              Int               @unique
+  version         Int
+  set_num         String            @db.VarChar(20)
+  inventory_parts inventory_parts[]
 }
 
 model inventory_minifigs {
@@ -21,9 +22,10 @@ model inventory_minifigs {
 }
 
 model inventory_parts {
-  id           Int     @id @default(autoincrement())
+  id           Int         @id @default(autoincrement())
+  inventory    inventories @relation(fields: [inventory_id], references: [id])
   inventory_id Int
-  part_num     String  @db.VarChar(20)
+  part_num     String      @db.VarChar(20)
   color_id     Int
   quantity     Int
   is_spare     Boolean

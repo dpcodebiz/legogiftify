@@ -32,7 +32,14 @@ const INTEGER_FIELDS = [
 const BOOLEAN_FIELDS = ["is_trans", "is_spare"];
 
 // Client
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  log: [
+    {
+      emit: "event",
+      level: "query",
+    },
+  ],
+});
 
 async function seed() {
   // Iterating through all seed files
