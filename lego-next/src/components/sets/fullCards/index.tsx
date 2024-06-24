@@ -12,8 +12,8 @@ import styles from "@styles/SetCard.module.scss";
 export const SetFullCard = ({ set_num }: Props) => {
   const { data, isLoading } = useSet(set_num);
 
-  // TODO loading
-  if (isLoading) return <>Loading</>;
+  // TODO better loading screen
+  if (isLoading) return <>Loading...</>;
 
   return (
     <>

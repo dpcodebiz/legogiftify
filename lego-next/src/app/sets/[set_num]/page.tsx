@@ -5,10 +5,12 @@ import { SetAdd } from "@components/sets/add";
 import { SetFullCard } from "@components/sets/fullCards";
 
 import styles from "@styles/Display.module.scss";
+import Link from "next/link";
 
 export default function SetPage({ params }: { params: { set_num: string } }) {
   return (
     <>
+      <Link href="/">Home</Link>
       <div className="max-w-screen-xl w-full mx-auto">
         <div className={clsx(styles.section, styles.split_media_screen)}>
           <SetFullCard set_num={params.set_num} />

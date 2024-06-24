@@ -11,6 +11,7 @@ type Props = {
 import styles from "@styles/PartCard.module.scss";
 import { useAtomValue } from "jotai";
 import { useEffect } from "react";
+import Skeleton from "react-loading-skeleton";
 
 export const PartsContainer = ({ set_num }: Props) => {
   const { isLoading, data, refetch } = useParts(set_num);
@@ -25,9 +26,15 @@ export const PartsContainer = ({ set_num }: Props) => {
   return (
     <>
       <div className={styles.cards_container}>
-        {data?.map((part, index) => (
-          <PartCard key={index} part={part}></PartCard>
-        ))}
+        {isLoading ? (
+          [...Array(12)].map((e, index) => <Skeleton key={index} />)
+        ) : (
+          <>
+            {data?.map((part, index) => (
+              <PartCard key={index} part={part}></PartCard>
+            ))}
+          </>
+        )}
       </div>
     </>
   );
