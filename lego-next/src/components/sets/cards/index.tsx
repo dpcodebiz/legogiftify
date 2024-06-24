@@ -11,13 +11,13 @@ export const SetCard = ({ set }: Props) => {
   return (
     <div className={styles.card}>
       <div className={styles.img}>
-        <Link href={`sets/${set.set_num}`}>
+        <Link href={`/sets/${set.set_num}`}>
           <img src={set.img_url} alt={set.name} />
         </Link>
       </div>
       <div className={styles.description}>
         <div className={styles.head}>
-          <Link href={`sets/${set.set_num}`}>
+          <Link href={`/sets/${set.set_num}`}>
             <span className={styles.name}>
               {set.name.length > 25
                 ? set.name.substring(0, 25) + "..."
