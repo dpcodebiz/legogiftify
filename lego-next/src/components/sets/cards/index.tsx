@@ -1,25 +1,30 @@
 import { Set } from "@models/set";
 import Link from "next/link";
 
+import styles from "@styles/SetCard.module.scss";
+
 type Props = {
   set: Set;
 };
 
 export const SetCard = ({ set }: Props) => {
   return (
-    <div className="bg-blue-200">
-      <div className="relative bg-white p-4">
-        <Link href={`set/${set.set_num}`}>
-          <img
-            className="rounded-lg max-h-[250px] mx-auto"
-            src={set.img_url}
-            alt=""
-          />
+    <div className={styles.card}>
+      <div className={styles.img}>
+        <Link href={`sets/${set.set_num}`}>
+          <img src={set.img_url} alt={set.name} />
         </Link>
       </div>
-      <div>{set.name}</div>
-      <div></div>
-      <div></div>
+      <div className={styles.description}>
+        <div className={styles.head}>
+          <span className={styles.name}>{set.name}</span>
+          <span className={styles.id}>{set.set_num}</span>
+        </div>
+        <div className={styles.info}>
+          <div>{set.year}</div>
+          <div>{set.num_parts} parts</div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,15 @@
+.heading_container {
+  @apply w-max flex flex-col p-8;
+}
+
+.heading {
+  @apply text-3xl text-center font-bold;
+}
+
+.subheading {
+  @apply text-right italic;
+}
+
+.section {
+  @apply p-8;
+}
