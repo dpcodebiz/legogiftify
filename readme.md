@@ -46,6 +46,7 @@ The project is just a proof of concept of my technical skills. As this is not in
 - proper refactoring
 - testing suite
 - deployment instructions
+- fully optimized UX (missing some skeletons and loaders)
 
 However, it does include:
 
