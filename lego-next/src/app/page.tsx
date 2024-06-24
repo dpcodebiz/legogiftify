@@ -1,3 +1,9 @@
+import { SetsContainer } from "@components/sets";
+
 export default function Home() {
-  return <>Lego</>;
+  return (
+    <>
+      <SetsContainer></SetsContainer>
+    </>
+  );
 }
