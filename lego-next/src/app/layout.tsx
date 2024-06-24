@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 
 import styles from "@styles/Display.module.scss";
 import { JotaiProvider } from "@components/jotai";
+import NextTopLoader from "nextjs-toploader";
 
 export default function RootLayout({
   children,
@@ -23,6 +24,7 @@ export default function RootLayout({
     <ReactQueryClientProvider>
       <html lang="en">
         <body className={clsx(inter.className, "bg-gray-100")}>
+          <NextTopLoader />
           <JotaiProvider>
             <div className={styles.heading_container}>
               <span className={styles.heading}>Lego Giftify</span>

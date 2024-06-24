@@ -13,10 +13,12 @@
     "axios": "^1.7.2",
     "jotai": "^2.8.3",
     "next": "14.2.4",
+    "nextjs-toploader": "^1.6.12",
     "radash": "^12.1.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.52.0",
+    "react-loading-skeleton": "^3.4.0",
     "react-select": "^5.8.0",
     "sass": "^1.77.6"
   },
