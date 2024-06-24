@@ -9,12 +9,6 @@ import styles from "@styles/Display.module.scss";
 export default function SetPage({ params }: { params: { set_num: string } }) {
   return (
     <>
-      <div className={styles.heading_container}>
-        <span className={styles.heading}>Lego Giftify</span>
-        <span className={styles.subheading}>
-          Where Lego&apos;s and Gifts come together
-        </span>
-      </div>
       <div className="max-w-screen-xl w-full mx-auto">
         <div className={clsx(styles.section, styles.split_media_screen)}>
           <SetFullCard set_num={params.set_num} />

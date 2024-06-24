@@ -3,7 +3,11 @@ import axios from "axios";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import AsyncSelect from "react-select/async";
 
+import { stalePartsAtom } from "@/utils/atoms";
 import styles from "@styles/Form.module.scss";
+import { useSetAtom } from "jotai";
+import { uid } from "radash";
+import { components } from "react-select";
 
 type Props = {
   set_num: string;
@@ -15,9 +19,18 @@ type PartOption = {
 };
 
 type SetAddPartFormData = {
-  part_num: string;
+  id: number;
   quantity: number;
 };
+
+const Option = (props: any) => (
+  <components.Option {...props} className="country-option">
+    <div className="flex flex-row gap-4">
+      <img className="w-12" src={props.data.img_url} alt="logo" />
+      <span>{props.data.label}</span>
+    </div>
+  </components.Option>
+);
 
 export const SetAdd = ({ set_num }: Props) => {
   const promiseOptions = (inputValue: string) => {
@@ -29,19 +42,36 @@ export const SetAdd = ({ set_num }: Props) => {
     });
   };
 
+  const setStaleParts = useSetAtom(stalePartsAtom);
+
   const {
     register,
     handleSubmit,
     control,
+    reset: resetForm,
     formState: { errors },
   } = useForm<SetAddPartFormData>();
 
+  //@ts-expect-error
+  const SingleValue = ({ children, ...props }) => (
+    //@ts-expect-error
+    <components.SingleValue {...props}>
+      <div className="flex flex-row gap-4">
+        <img className="w-12" src={props.data.img_url} />
+        <span className="my-auto">{children}</span>
+      </div>
+    </components.SingleValue>
+  );
+
   // TODO input sanitation
   const onSubmit: SubmitHandler<SetAddPartFormData> = async (data) => {
-    const req = await axios.post(backend("/sets/add"), {
+    await axios.post(backend("/sets/add"), {
       set_num: set_num,
       ...data,
     });
+
+    setStaleParts(uid(10));
+    resetForm();
   };
 
   return (
@@ -49,13 +79,17 @@ export const SetAdd = ({ set_num }: Props) => {
       <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
         <span className={styles.heading}>Add a new part</span>
         <Controller
-          name="part_num"
+          name="id"
           control={control}
           render={({ field: { onChange } }) => (
             <AsyncSelect
               onChange={(e) => onChange(e?.value)}
               cacheOptions
               defaultOptions
+              components={{
+                Option,
+                SingleValue,
+              }}
               loadOptions={promiseOptions}
             />
           )}

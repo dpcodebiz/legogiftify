@@ -1,5 +1,6 @@
 "use client";
 
+import { stalePartsAtom } from "@/utils/atoms";
 import { PartCard } from "./cards";
 import { useParts } from "./utils";
 
@@ -8,9 +9,16 @@ type Props = {
 };
 
 import styles from "@styles/PartCard.module.scss";
+import { useAtomValue } from "jotai";
+import { useEffect } from "react";
 
 export const PartsContainer = ({ set_num }: Props) => {
-  const { isLoading, data } = useParts(set_num);
+  const { isLoading, data, refetch } = useParts(set_num);
+  const staleParts = useAtomValue(stalePartsAtom);
+
+  useEffect(() => {
+    refetch();
+  }, [staleParts, refetch]);
 
   if (isLoading) return <>Loading</>;
 

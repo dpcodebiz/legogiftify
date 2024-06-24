@@ -15,6 +15,7 @@ const TABLES = [
   "parts",
   "sets",
   "themes",
+  "parts_search",
   "inventory_parts",
 ];
 const INTEGER_FIELDS = [

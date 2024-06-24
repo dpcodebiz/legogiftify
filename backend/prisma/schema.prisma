@@ -91,3 +91,9 @@ model elements {
   color_id   Int
   design_id  String
 }
+
+model parts_search {
+  id       Int    @id @default(autoincrement())
+  part_num String
+  img_url  String
+}

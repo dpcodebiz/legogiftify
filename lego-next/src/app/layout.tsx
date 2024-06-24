@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   description: "Manage your lego sets",
 };
 
+import styles from "@styles/Display.module.scss";
+import { JotaiProvider } from "@components/jotai";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -19,7 +22,17 @@ export default function RootLayout({
   return (
     <ReactQueryClientProvider>
       <html lang="en">
-        <body className={clsx(inter.className, "bg-gray-100")}>{children}</body>
+        <body className={clsx(inter.className, "bg-gray-100")}>
+          <JotaiProvider>
+            <div className={styles.heading_container}>
+              <span className={styles.heading}>Lego Giftify</span>
+              <span className={styles.subheading}>
+                Where Lego&apos;s and Gifts come together
+              </span>
+            </div>
+            {children}
+          </JotaiProvider>
+        </body>
       </html>
     </ReactQueryClientProvider>
   );

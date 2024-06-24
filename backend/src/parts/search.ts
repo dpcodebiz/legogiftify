@@ -9,9 +9,9 @@ export const SearchParts = async (req: Request, res: Response) => {
   // TODO validation
   const { q } = req.query;
 
-  const parts = await client.parts.findMany({
+  const parts = await client.parts_search.findMany({
     where: {
-      name: {
+      part_num: {
         contains: q as string,
       },
     },
@@ -19,7 +19,11 @@ export const SearchParts = async (req: Request, res: Response) => {
   });
 
   // Sending
-  res
-    .status(200)
-    .send(parts.map((part) => ({ label: part.name, value: part.part_num })));
+  res.status(200).send(
+    parts.map((part) => ({
+      label: part.part_num,
+      value: part.id,
+      img_url: part.img_url,
+    }))
+  );
 };
