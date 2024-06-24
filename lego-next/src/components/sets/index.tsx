@@ -1,19 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { SetCard } from "./cards";
 import { useSets } from "./utils";
 
 import styles from "@styles/SetCard.module.scss";
+import { throttle } from "radash";
 
 export const SetsContainer = () => {
   // Fetching sets
   const [searchQ, setSearchQ] = useState<string>("");
   const { isLoading, data } = useSets(searchQ);
 
-  const onSearchUpdate = (newSearchQ: string) => {
-    setSearchQ(newSearchQ);
-  };
+  const onSearchUpdate = useCallback(
+    throttle({ interval: 300 }, (e) => {
+      if (e.target.value.length < 0) return;
+      setSearchQ(e.target.value);
+    }),
+    []
+  );
 
   // TODO loading
   return (
@@ -25,7 +30,7 @@ export const SetsContainer = () => {
               className={styles.search}
               type="text"
               placeholder="Search for a specific set here"
-              onChange={(e) => onSearchUpdate(e.target.value)}
+              onChange={onSearchUpdate}
             />
           </form>
         </div>
