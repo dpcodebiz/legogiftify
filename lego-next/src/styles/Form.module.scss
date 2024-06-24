@@ -1,0 +1,23 @@
+.container {
+  @apply flex flex-col gap-2 w-full;
+}
+
+.inline {
+  @apply flex flex-row space-x-2 w-full;
+}
+
+.heading {
+  @apply text-lg mb-2;
+
+  @apply sm:mb-0;
+}
+
+.input {
+  @apply bg-white placeholder-[#808080] rounded shadow-sm py-1 px-2 border-[#cccccc] border-[1px];
+  @apply w-full;
+}
+
+.button {
+  @apply bg-blue-500 text-white py-2 px-6 w-max rounded shadow-sm;
+  @apply cursor-pointer hover:bg-blue-600 transition-colors;
+}

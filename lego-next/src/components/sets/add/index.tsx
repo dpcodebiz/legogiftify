@@ -3,6 +3,8 @@ import axios from "axios";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import AsyncSelect from "react-select/async";
 
+import styles from "@styles/Form.module.scss";
+
 type Props = {
   set_num: string;
 };
@@ -44,7 +46,8 @@ export const SetAdd = ({ set_num }: Props) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
+        <span className={styles.heading}>Add a new part</span>
         <Controller
           name="part_num"
           control={control}
@@ -57,8 +60,15 @@ export const SetAdd = ({ set_num }: Props) => {
             />
           )}
         />
-        <input {...register("quantity")} type="text" className="bg-green-300" />
-        <input type="submit" value="submit" />
+        <div className={styles.inline}>
+          <input
+            {...register("quantity")}
+            type="text"
+            className={styles.input}
+            placeholder="Quantity"
+          />
+          <input className={styles.button} type="submit" value="ADD" />
+        </div>
       </form>
     </>
   );

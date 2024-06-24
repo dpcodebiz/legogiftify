@@ -1,0 +1,33 @@
+.cards_container {
+  @apply grid grid-cols-2 justify-items-center gap-4;
+
+  @apply sm:grid-cols-4;
+
+  @apply md:grid-cols-5;
+
+  @apply lg:grid-cols-6;
+
+  @apply xl:grid-cols-10;
+
+  @apply 2xl:grid-cols-12;
+}
+.img {
+  @apply max-w-32 min-w-32 max-h-32 min-h-32 relative rounded-xl bg-white p-4 shadow-sm;
+
+  img {
+    @apply w-full aspect-auto mx-auto my-auto;
+  }
+}
+.info {
+  @apply absolute top-0 left-0 w-full h-full;
+
+  .quantity {
+    @apply absolute top-2 right-2;
+    @apply bg-gray-100 bg-opacity-90 rounded-xl text-xs py-1 px-2;
+  }
+
+  .id {
+    @apply absolute w-max mx-auto bottom-2 left-0 right-0 text-xs text-center;
+    @apply bg-gray-100 bg-opacity-90 rounded px-2 shadow-sm;
+  }
+}

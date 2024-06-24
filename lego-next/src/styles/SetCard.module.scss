@@ -2,6 +2,14 @@
   @apply flex flex-col gap-4;
 }
 
+.container_mono {
+  @apply w-full flex flex-col;
+
+  .card {
+    @apply h-max my-auto;
+  }
+}
+
 .cards_container {
   @apply grid grid-cols-1 gap-4;
   @apply sm:grid-cols-2;
@@ -34,8 +42,13 @@
   @apply rounded shadow-sm bg-gray-100 divide-x-[1px] flex flex-row;
 
   .img {
-    @apply bg-white rounded-l max-w-[150px] min-w-[150px] p-4 h-full;
+    @apply bg-white rounded-l max-w-[150px] min-w-[150px] p-4;
     @apply hover:opacity-50 transition-opacity cursor-pointer;
+    @apply place-content-center;
+
+    &.noLink {
+      @apply cursor-default;
+    }
 
     a {
       @apply h-full block place-content-center;

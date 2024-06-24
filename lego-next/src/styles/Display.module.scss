@@ -13,3 +13,9 @@
 .section {
   @apply p-8;
 }
+
+.split_media_screen {
+  @apply w-full gap-4 flex flex-col;
+
+  @apply sm:flex-row;
+}

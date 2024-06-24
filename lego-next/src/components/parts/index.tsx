@@ -7,6 +7,8 @@ type Props = {
   set_num: string;
 };
 
+import styles from "@styles/PartCard.module.scss";
+
 export const PartsContainer = ({ set_num }: Props) => {
   const { isLoading, data } = useParts(set_num);
 
@@ -14,9 +16,11 @@ export const PartsContainer = ({ set_num }: Props) => {
 
   return (
     <>
-      {data?.map((part, index) => (
-        <PartCard key={index} part={part}></PartCard>
-      ))}
+      <div className={styles.cards_container}>
+        {data?.map((part, index) => (
+          <PartCard key={index} part={part}></PartCard>
+        ))}
+      </div>
     </>
   );
 };
